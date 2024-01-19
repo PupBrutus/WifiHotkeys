@@ -1,38 +1,35 @@
-# Application Name
+# Wifi Hotkeys
 
-This application is designed to work with a CircuitPython Wifi Capable device, specifically intended for a Raspberry Pi Pico W.
+## Setup Instructions
 
-## Setup
+1. Install [Circuit Python](https://circuitpython.org/)
+2. Update `settings.toml` with your wifi connection information.
+3. Copy the `code.py` files to your device.
+4. Install the necessary libraries from [Adafruit's Circuit Python libraries](https://circuitpython.org/libraries).
 
-1. Ensure you are using a CircuitPython Wifi Capable device. If you're using a Raspberry Pi Pico W, you can follow the setup guide [here](https://learn.adafruit.com/pico-w-wifi-with-circuitpython/overview).
+## Key Features
 
-2. Update the `settings.toml` file with your wifi SSID and password.
+* Hosts a webserver that responds to GET requests
+* Emulates the keyboard commands configured in code.py
 
-3. Copy all files to the Circuit Python drive.
+## Improvements
 
-## Usage
+1. Secure the API
 
-After completing the setup, you can access the various routes and commands via http get requests. This will send keyboard input of the requested string or key command.
+2. Segement commands/methods to "drop" program key commands in more easily
 
-## Features
-
-## Features
-
-The application includes the following features:
-
-1. **Wifi Connectivity**: The application allows you to connect to a wifi network using the provided SSID and password in the `settings.toml` file.
-
-2. **HTTP Routes**: You can access various routes and commands through HTTP GET requests, enabling you to send keyboard input as a string or key command.
-
-3. **Customizable**: The `code.py` file can be modified to add or modify routes and commands according to your specific needs.
-
-4. **Easy Setup**: The setup process is straightforward, involving updating the `settings.toml` file and copying all files to the Circuit Python drive.
-
+3. Web console? 
 
 ## Contributing
 
-follow standard branch/pr 
+We welcome user contributions! Please follow the normal branch/pull request method.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
-(Provide license information here)
+This project is licensed under the MIT License.
