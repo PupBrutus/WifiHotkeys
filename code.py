@@ -27,15 +27,40 @@ pool = socketpool.SocketPool(wifi.radio)
 server = Server(pool, "/static", debug=True)
 print("Listening on http://%s:80" % wifi.radio.ipv4_address)
 
-# Route definitions
+# Route definitions -
 @server.route("/")
 def base(request: Request):
     """
-    Serve a default static plain text message.
+    Serve an HTML page with buttons to execute API commands.
     """
-    return Response(request, "Hello, your method is wrong and you should feel wrong!")
+    html_content = """
+    <html>
+    <head>
+        <title>Pi Control</title>
+    </head>
+    <body>
+        <h1>Control the Pi</h1>
+        <button onclick="sendCommand('/teams?cmd=muteMic')">Mute Mic</button>
+        <button onclick="sendCommand('/teams?cmd=videoToggle')">Toggle Video</button>
+        <button onclick="sendCommand('/teams?cmd=joinFromOutlook')">Join from Outlook</button>
+        <button onclick="sendCommand('/teams?cmd=acceptAudioOnly')">Accept Audio Only</button>
+        <button onclick="sendCommand('/teams?cmd=acceptAudioVideo')">Accept Audio/Video</button>
+        <button onclick="sendCommand('/teams?cmd=disconnect')">Disconnect</button>
+        <button onclick="sendCommand('/message?cmd=string')">Send Message</button>
+        <script>
+            function sendCommand(url) {
+                fetch(url)
+                    .then(response => response.text())
+                    .then(data => alert(data))
+                    .catch(error => alert('Error: ' + error));
+            }
+        </script>
+    </body>
+    </html>
+    """
+    return Response(request, html_content, content_type="text/html")
 
-# This is the simplest way to register a route. It uses the Server object in current scope.
+
 @server.route("/teams", GET)
 def teamsCmds(request: Request):
     cmd = request.query_params.get("cmd")
